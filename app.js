@@ -83,7 +83,7 @@
     var h = '<section class="screen">';
     h += '<div class="top"><div class="brand"><img class="gbox" src="goose.svg" alt="Гусь ГЕОС" data-goose><p class="u" style="font-size:20px;font-weight:700">ГЕОС</p></div><p class="eyebrow">Наука за окном</p></div>';
     h += '<h1 class="u h1">Поездка —<br>это лекция</h1>';
-    h += '<p class="lead">Едешь на 17а? Смотри в окно, отвечай на вопросы и собирай профессии учёных, которые изучают город.</p>';
+    h += '<p class="lead">Едешь на 17а? За окном — биология, физика, археология и история. Узнай, как учёные читают город, и собери их профессии.</p>';
     if (checkDue()) h += '<button class="plaque" data-act="check"><p class="u" style="font-size:15px;font-weight:700">Проверь себя · 3 вопроса</p><p style="font-size:13px;font-weight:700">Прошла неделя. Что ты запомнил?</p></button>';
     h += '<div class="card"><div class="row"><span class="u num">' + esc(R.number) + '</span><div style="flex:1"><p style="font-size:15px;font-weight:800">' + esc(R.title) + '</p><p style="font-size:12px;color:var(--mu)">' + R.segments.length + ' участков · ' + closedTotal() + ' вопросов + 1 на размышление · ' + esc(R.duration) + '</p></div><span class="pill">ПИЛОТ</span></div>';
     h += '<p class="eyebrow" style="margin-top:14px">Сквозной вопрос</p><p style="font-size:16px;font-weight:700;margin-top:4px;line-height:1.35">' + esc(R.theme) + '</p>';
@@ -156,7 +156,7 @@
     }
     var qi = cv.qi, q = s.qs[qi], a = S.ans[k(si, qi)];
     var mc = { 'Найди': '#2EC4B6', 'Заметь': '#FFB547', 'Подумай': '#C77DFF' }[q.m] || s.color;
-    h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="tag" style="background:' + mc + '">' + esc(q.m.toUpperCase()) + '</span>' + (s.qs.length > 1 ? '<div class="qdots">' + s.qs.map(function (_, j) { return '<i class="' + (j <= qi ? 'on' : '') + '"></i>'; }).join('') + '</div>' : '') + '</div>';
+    h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span><span class="tag" style="background:' + mc + '">' + esc(q.m.toUpperCase()) + '</span>' + (q.sci ? '<span class="sci">🔬 ' + esc(q.sci) + '</span>' : '') + '</span>' + (s.qs.length > 1 ? '<div class="qdots">' + s.qs.map(function (_, j) { return '<i class="' + (j <= qi ? 'on' : '') + '"></i>'; }).join('') + '</div>' : '') + '</div>';
     h += '<h1 class="u" style="font-size:24px;font-weight:700;line-height:1.15;margin-top:12px">' + esc(s.title) + '</h1>';
     if (qi === 0) h += '<p class="story">' + esc(s.text) + '</p>';
     h += '<div class="lookbox">👁 ' + esc(s.look) + '</div>';
@@ -213,7 +213,7 @@
       s.qs.forEach(function (q, qi) {
         var a = S.ans[k(si, qi)]; if (!a) return;
         var mark = a.ok === null ? '💭' : a.ok ? '✓' : '✕', col = a.ok === null ? '#C77DFF' : a.ok ? 'var(--te)' : 'var(--pr)';
-        rows += '<div class="di" style="border-color:' + s.color + '"><small>' + esc(q.m) + '</small><p style="font-weight:700">' + esc(q.q) + '</p><p style="margin-top:4px"><b style="color:' + col + '">' + mark + '</b> ' + esc(q.o[a.c]) + '</p></div>';
+        rows += '<div class="di" style="border-color:' + s.color + '"><small>' + esc(q.m) + (q.sci ? ' · ' + esc(q.sci) : '') + '</small><p style="font-weight:700">' + esc(q.q) + '</p><p style="margin-top:4px"><b style="color:' + col + '">' + mark + '</b> ' + esc(q.o[a.c]) + '</p></div>';
       });
       if (rows) h += '<p class="eyebrow" style="margin-top:18px">' + s.icon + ' ' + esc(s.title) + '</p>' + rows;
     });
@@ -231,7 +231,7 @@
     h += '<h1 class="u h1" style="font-size:24px">Что такое ГЕОС</h1>';
     h += '<p class="story">ГЕОС превращает обычную поездку на автобусе в короткое исследование города. Каждый участок между остановками — одна карточка: история на минуту, подсказка «смотри в окно» и вопрос. За каждый участок ты открываешь профессию учёного, который изучает такие вещи.</p>';
     h += '<div class="card"><p style="font-weight:800">Три типа заданий</p><p style="font-size:14px;color:var(--so);margin-top:6px"><b style="color:var(--te)">Найди</b> — увидеть объект за окном.<br><b style="color:var(--am)">Заметь</b> — сравнить, как меняется город.<br><b style="color:#C77DFF">Подумай</b> — объяснить, почему он такой.</p></div>';
-    h += '<div class="card"><p style="font-weight:800">Для кого</p><p style="font-size:14px;color:var(--so);margin-top:6px">Школьники 8–11 классов. По нашему опросу (21 ответ) 86% считают время в автобусе потерянным, а 90% готовы послушать минутную историю или подумать об этом.</p></div>';
+    h += '<div class="card"><p style="font-weight:800">Для кого</p><p style="font-size:14px;color:var(--so);margin-top:6px">Школьники 8–11 классов, которым интересны история, природа или устройство города. Фактов о Новгороде много, но они оторваны от мест: ГЕОС привязывает каждый факт к тому, что видно из окна, и к науке, которая это изучает.</p></div>';
     h += '<div class="card"><p style="font-weight:800">Статус</p><p style="font-size:14px;color:var(--so);margin-top:6px">Маршрут 17а — пилот ГЕОС, позже появятся другие маршруты. ' + esc(R.status) + '.</p></div>';
     h += '<div class="card"><p style="font-weight:800">Без интернета</p><p style="font-size:14px;color:var(--so);margin-top:6px">Открой сайт один раз по Wi-Fi — дальше он работает даже в режиме «в самолёте». На iPhone: «Поделиться» → «На экран Домой». Ответы хранятся только на твоём телефоне.</p></div>';
     h += '<p style="text-align:center;margin-top:18px"><button class="link" data-act="check">Проверь себя (демо)</button> · <button class="link" data-act="wipe">Стереть прогресс</button></p>';
