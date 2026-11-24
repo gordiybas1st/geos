@@ -1,5 +1,5 @@
 /* ГЕОС service worker: всё сохраняется при первом открытии, дальше работает офлайн */
-var CACHE = 'geos-v3-d14812bd';
+var CACHE = 'geos-v3-2111165f';
 var FILES = [
   "./index.html",
   "./app.js",

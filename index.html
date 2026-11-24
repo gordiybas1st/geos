@@ -27,7 +27,7 @@ html{background:var(--bg)}
 body{background:var(--bg);color:var(--tx);font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.45;min-height:100vh;min-height:100dvh;overflow-x:hidden}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:inherit}
 .u{font-family:Unbounded,Manrope,sans-serif}
-#app{max-width:480px;margin:0 auto;padding:max(18px,env(safe-area-inset-top)) 20px calc(110px + env(safe-area-inset-bottom));min-height:100dvh;position:relative}
+#app{max-width:480px;margin:0 auto;padding:max(18px,env(safe-area-inset-top)) 20px calc(18px + env(safe-area-inset-bottom));min-height:100dvh;position:relative}
 .screen{animation:in .35s ease both}
 @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .top{display:flex;justify-content:space-between;align-items:center;min-height:36px}
@@ -41,9 +41,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 .pill{font-size:10px;font-weight:800;color:var(--am);border:1px solid var(--am);border-radius:999px;padding:3px 8px;letter-spacing:.5px}
 .num{background:var(--pr);border-radius:12px;padding:8px 10px;color:var(--bg);font-size:18px;font-weight:700}
 .row{display:flex;gap:12px;align-items:center}
-.btn{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom));width:calc(100% - 40px);max-width:440px;background:var(--pr);color:var(--bg);border-radius:18px;text-align:center;padding:17px;font-weight:800;font-size:16px;box-shadow:0 8px 24px rgba(255,106,61,.35);z-index:5;transition:transform .15s}
-.btn:active{transform:translateX(-50%) scale(.97)}
-.btn.ghost{background:var(--s1);border:1px solid var(--s2);color:var(--tx);box-shadow:none}
+.btn{position:sticky;display:block;bottom:calc(14px + env(safe-area-inset-bottom));width:100%;margin-top:22px;background:var(--pr);color:var(--bg);border-radius:18px;text-align:center;padding:17px;font-weight:800;font-size:16px;box-shadow:0 8px 24px rgba(255,106,61,.35),0 0 0 14px var(--bg);z-index:5;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--s1);border:1px solid var(--s2);color:var(--tx);box-shadow:0 0 0 14px var(--bg)}
 .btn[disabled]{opacity:.45}
 .tiles{display:flex;gap:10px;margin-top:12px}
 .tile{flex:1;background:var(--s1);border-radius:18px;padding:12px}
@@ -137,7 +137,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 .di{background:var(--s1);border-radius:16px;padding:12px 14px;margin-top:8px;border-left:4px solid var(--seg)}
 .di p{font-size:14px}
 .di small{font-size:12px;color:var(--mu)}
-.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom));max-width:340px;text-align:center;transform:translateX(-50%);background:var(--s2);border-radius:14px;padding:10px 16px;font-size:14px;font-weight:700;z-index:10;animation:in .3s ease both}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));max-width:340px;text-align:center;transform:translateX(-50%);background:var(--s2);border-radius:14px;padding:10px 16px;font-size:14px;font-weight:700;z-index:10;animation:in .3s ease both}
 .prog{height:4px;background:var(--s2);border-radius:2px;margin-top:10px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--pr);border-radius:2px;transition:width .5s}
 a{color:var(--te)}
